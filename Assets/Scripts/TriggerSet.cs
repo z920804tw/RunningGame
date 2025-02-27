@@ -12,7 +12,6 @@ public class TriggerSet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            
             triggerEvent.Invoke();
         }
     }
