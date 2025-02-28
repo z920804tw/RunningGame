@@ -7,7 +7,8 @@ public class Obstacle : MonoBehaviour
     public int dmg;
     public void TakeDmg()
     {
-        GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().CurrentHp -= dmg;
+        PlayerHealth playerHealth =GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+        playerHealth.TakeDmg(dmg);
         DestoryThis();
     }
 

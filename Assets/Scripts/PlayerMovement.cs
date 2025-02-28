@@ -10,15 +10,18 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
 
     [Header("參數設定")]
-    public int maxHp;
-    [SerializeField]int currentHp;
+
     public float moveSpeed;
     public float jumpForce;
-
+    [SerializeField] LayerMask ground;
 
     [SerializeField] bool isJump;
     [SerializeField] bool isGround;
-    bool wasJump;
+
+    float slideTime;
+    [SerializeField] bool isSlide;
+
+    bool wasGround;
 
     [Header("跑道參數設定")]
     public float lineDirection;
@@ -30,34 +33,27 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
+    void OnDisable()
+    {
+        rb.velocity = new Vector3(0, 0, 5f);
+    }
     void Start()
     {
         lineNum = maxLineNum / 2;
-        currentHp = maxHp;
+
         targetPos = new Vector3(0, transform.position.y, transform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if(currentHp<=0) this.enabled=false;
         transform.rotation = Quaternion.Euler(0, 0, 0);
+        isGround = CheckGround();
 
-        isGround = Physics.Raycast(transform.position, Vector3.down, 0.6f);
-        Debug.DrawRay(transform.position, Vector3.down * 0.6f, Color.red);
-        //跳躍功能
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isGround)
-        {
-            Jump();
-        }
-        CheckLand();
-        wasJump = isGround;
+        Jump();        //跳躍功能
+        Slide();       //滑行功能
 
-        //切換跑道功能
-        ChangeLine();
-
-
+        ChangeLine();  //切換跑道功能
     }
     void FixedUpdate()
     {
@@ -103,42 +99,68 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        anim.SetBool("Jump", true);
-        isJump = true;
-    }
-
-    void CheckLand()
-    {
-        if (isJump && isGround)
+        if (!isJump)
         {
-            if (!wasJump)
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+                anim.SetBool("Jump", true);
+                isJump = true;
+                Debug.Log("跳躍");
+            }
+        }
+        else if (isJump)
+        {
+            if (isGround && !wasGround)
             {
                 anim.SetBool("Jump", false);
-                Debug.Log("觸發");
+                Debug.Log("碰到地面");
                 isJump = false;
             }
         }
+        wasGround = isGround;
     }
-    void OnTriggerEnter(Collider other)
+    bool CheckGround() //檢查是否碰到地面
     {
-        // if (other.gameObject.CompareTag("Obstacle"))
-
-        // {
-        //     Debug.Log("hit Obstacle");
-        //     currentHp--;
-        //     if (currentHp <= 0)
-        //     {
-        //         this.enabled = false;
-        //     }
-
-        // }
+        Collider[] collider = Physics.OverlapSphere(transform.position, 0.2f, ground);
+        if (collider.Length != 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
-    public int CurrentHp
+    void Slide()
     {
-        get{return currentHp;}
-        set {currentHp=value;}
-    }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (!isJump && !isSlide)
+            {
+                isSlide = true;
+                capsuleCollider.center = new Vector3(0, 0.32f, 0);
+                capsuleCollider.height = 0.65f;
+                anim.SetTrigger("Slide");
+                Debug.Log("滑行");
+            }
+        }
 
+        if (isSlide)
+        {
+            slideTime += Time.deltaTime;
+            if (slideTime >= 1f)
+            {
+                isSlide = false;
+                capsuleCollider.center = new Vector3(0, 0.85f, 0);
+                capsuleCollider.height = 1.8f;
+                slideTime = 0;
+            }
+        }
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, 0.2f);
+    }
 }
