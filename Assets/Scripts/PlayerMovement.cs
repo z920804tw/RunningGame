@@ -40,19 +40,16 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         lineNum = maxLineNum / 2;
-
         targetPos = new Vector3(0, transform.position.y, transform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.Euler(0, 0, 0);
         isGround = CheckGround();
 
         Jump();        //跳躍功能
         Slide();       //滑行功能
-
         ChangeLine();  //切換跑道功能
     }
     void FixedUpdate()
@@ -96,9 +93,22 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(limitVal.x, rb.velocity.y, limitVal.z);
         }
     }
-
+    bool CheckGround() //檢查是否碰到地面
+    {
+        Collider[] collider = Physics.OverlapSphere(transform.position, 0.2f, ground);
+        if (collider.Length != 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     void Jump()
     {
+        if (isSlide) return;
+
         if (!isJump)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -120,29 +130,18 @@ public class PlayerMovement : MonoBehaviour
         }
         wasGround = isGround;
     }
-    bool CheckGround() //檢查是否碰到地面
-    {
-        Collider[] collider = Physics.OverlapSphere(transform.position, 0.2f, ground);
-        if (collider.Length != 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
     void Slide()
     {
+        if (isJump) return; //跳躍時無法滑行
+
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (!isJump && !isSlide)
+            if (!isSlide)
             {
+                anim.SetTrigger("Slide");
                 isSlide = true;
                 capsuleCollider.center = new Vector3(0, 0.32f, 0);
                 capsuleCollider.height = 0.65f;
-                anim.SetTrigger("Slide");
                 Debug.Log("滑行");
             }
         }

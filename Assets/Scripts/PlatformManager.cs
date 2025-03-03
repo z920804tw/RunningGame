@@ -28,7 +28,8 @@ public class PlatformManager : MonoBehaviour
         {
             Destroy(preObj, destoryTime);
         }
-        GameObject pf = Instantiate(platformPrefabs[0], preObj.transform.position + spawnPos, Quaternion.identity);
+        int rnd= Random.Range(0, platformPrefabs.Length);
+        GameObject pf = Instantiate(platformPrefabs[rnd], preObj.transform.position + spawnPos, Quaternion.identity);
         pf.transform.SetParent(this.transform);
         pf.name = $"Platform";
 

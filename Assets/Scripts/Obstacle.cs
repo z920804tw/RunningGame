@@ -12,7 +12,7 @@ public class Obstacle : MonoBehaviour
         DestoryThis();
     }
 
-    public void DestoryThis()
+    void DestoryThis()
     {
         Destroy(gameObject);
     }
