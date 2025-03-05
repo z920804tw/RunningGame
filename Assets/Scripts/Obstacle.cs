@@ -5,15 +5,19 @@ public class Obstacle : MonoBehaviour
 {
     // Start is called before the first frame update
     public int dmg;
-    public void TakeDmg()
-    {
-        PlayerHealth playerHealth =GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
-        playerHealth.TakeDmg(dmg);
-        DestoryThis();
-    }
-
+    public bool canDestory;
     void DestoryThis()
     {
         Destroy(gameObject);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerHealth>().TakeDmg(dmg);
+            Debug.Log(dmg);
+            if (canDestory) DestoryThis();
+        }
     }
 }

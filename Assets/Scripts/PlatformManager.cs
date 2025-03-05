@@ -8,12 +8,10 @@ public class PlatformManager : MonoBehaviour
     public GameObject[] platformPrefabs;
 
     [SerializeField] GameObject preObj;
-    [SerializeField] Vector3 spawnPos;
     [SerializeField] float destoryTime;
     void Start()
     {
         preObj = gameObject.transform.GetChild(0).gameObject;
-        // preObj.GetComponentInChildren<TriggerSet>().triggerEvent.AddListener(SpawnNext);
     }
 
     // Update is called once per frame
@@ -23,13 +21,12 @@ public class PlatformManager : MonoBehaviour
     }
     public void SpawnNext()
     {
-
         if (preObj != null)
         {
             Destroy(preObj, destoryTime);
         }
-        int rnd= Random.Range(0, platformPrefabs.Length);
-        GameObject pf = Instantiate(platformPrefabs[rnd], preObj.transform.position + spawnPos, Quaternion.identity);
+        int rnd = Random.Range(0, platformPrefabs.Length);
+        GameObject pf = Instantiate(platformPrefabs[rnd], preObj.transform.position + new Vector3(transform.position.x, transform.position.y, 100), Quaternion.identity);
         pf.transform.SetParent(this.transform);
         pf.name = $"Platform";
 
