@@ -3968,7 +3968,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2000
+  m_VersionIndex: 2033
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4070,7 +4070,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &1689875210076836207
@@ -8041,7 +8041,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2000
+  m_VersionIndex: 2033
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -8143,7 +8143,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &2368207567786057531
@@ -10374,7 +10374,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 702
+  m_VersionIndex: 735
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -10476,7 +10476,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &8723592254617020493
@@ -10488,6 +10488,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2361701545130458112}
+  - component: {fileID: 4272252325182615842}
   m_Layer: 0
   m_Name: Platform2
   m_TagString: Untagged
@@ -10512,6 +10513,19 @@ Transform:
   - {fileID: 7901137974852408611}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4272252325182615842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8723592254617020493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8689aa1ed3e350c4f9871832cdb821ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 8
 --- !u!1001 &34702861900964609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10731,17 +10745,17 @@ PrefabInstance:
     - target: {fileID: 3607424511675352541, guid: 446473d0850721f4ebdaa81c419bcc25,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2167
+      value: 2200
       objectReference: {fileID: 0}
     - target: {fileID: 6064179393481748880, guid: 446473d0850721f4ebdaa81c419bcc25,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2167
+      value: 2200
       objectReference: {fileID: 0}
     - target: {fileID: 7918817914185915553, guid: 446473d0850721f4ebdaa81c419bcc25,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2183
+      value: 2216
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10894,17 +10908,17 @@ PrefabInstance:
     - target: {fileID: 3607424511675352541, guid: 446473d0850721f4ebdaa81c419bcc25,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2167
+      value: 2200
       objectReference: {fileID: 0}
     - target: {fileID: 6064179393481748880, guid: 446473d0850721f4ebdaa81c419bcc25,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2167
+      value: 2200
       objectReference: {fileID: 0}
     - target: {fileID: 7918817914185915553, guid: 446473d0850721f4ebdaa81c419bcc25,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2183
+      value: 2216
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11057,17 +11071,17 @@ PrefabInstance:
     - target: {fileID: 3607424511675352541, guid: 446473d0850721f4ebdaa81c419bcc25,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2167
+      value: 2200
       objectReference: {fileID: 0}
     - target: {fileID: 6064179393481748880, guid: 446473d0850721f4ebdaa81c419bcc25,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2167
+      value: 2200
       objectReference: {fileID: 0}
     - target: {fileID: 7918817914185915553, guid: 446473d0850721f4ebdaa81c419bcc25,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2183
+      value: 2216
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11239,7 +11253,7 @@ PrefabInstance:
     - target: {fileID: 544741333134746099, guid: abff9ae2d9f32184299861c5095aac40,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2445
+      value: 2478
       objectReference: {fileID: 0}
     - target: {fileID: 2793699669752120195, guid: abff9ae2d9f32184299861c5095aac40,
         type: 3}
@@ -11373,17 +11387,17 @@ PrefabInstance:
     - target: {fileID: 3607424511675352541, guid: 446473d0850721f4ebdaa81c419bcc25,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2167
+      value: 2200
       objectReference: {fileID: 0}
     - target: {fileID: 6064179393481748880, guid: 446473d0850721f4ebdaa81c419bcc25,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2167
+      value: 2200
       objectReference: {fileID: 0}
     - target: {fileID: 7918817914185915553, guid: 446473d0850721f4ebdaa81c419bcc25,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2183
+      value: 2216
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11536,17 +11550,17 @@ PrefabInstance:
     - target: {fileID: 3607424511675352541, guid: 446473d0850721f4ebdaa81c419bcc25,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2170
+      value: 2203
       objectReference: {fileID: 0}
     - target: {fileID: 6064179393481748880, guid: 446473d0850721f4ebdaa81c419bcc25,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2170
+      value: 2203
       objectReference: {fileID: 0}
     - target: {fileID: 7918817914185915553, guid: 446473d0850721f4ebdaa81c419bcc25,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2186
+      value: 2219
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -6,12 +6,11 @@ public class PlatformManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] platformPrefabs;
-
-    [SerializeField] GameObject preObj;
-    [SerializeField] float destoryTime;
+    public Transform spawnPos;
+    
     void Start()
     {
-        preObj = gameObject.transform.GetChild(0).gameObject;
+
     }
 
     // Update is called once per frame
@@ -21,15 +20,9 @@ public class PlatformManager : MonoBehaviour
     }
     public void SpawnNext()
     {
-        if (preObj != null)
-        {
-            Destroy(preObj, destoryTime);
-        }
         int rnd = Random.Range(0, platformPrefabs.Length);
-        GameObject pf = Instantiate(platformPrefabs[rnd], preObj.transform.position + new Vector3(transform.position.x, transform.position.y, 100), Quaternion.identity);
+        GameObject pf = Instantiate(platformPrefabs[rnd],spawnPos.position, Quaternion.identity);
         pf.transform.SetParent(this.transform);
         pf.name = $"Platform";
-
-        preObj = pf;
     }
 }

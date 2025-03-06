@@ -9,6 +9,9 @@ public class PlayerHealth : MonoBehaviour
     public int maxHp;
     [SerializeField] int currentHp;
     PlayerMovement playerMovement;
+
+    bool isdead;
+    public bool IsDead { get { return isdead;}}
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -29,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
             currentHp = 0;
             playerMovement.anim.SetTrigger("Die");
             playerMovement.enabled=false;
+            isdead=true;    
             return;
         }
 

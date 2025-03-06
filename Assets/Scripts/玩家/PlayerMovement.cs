@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] int lineNum;
 
     Vector3 targetPos;
+    Vector3 startPos;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -41,21 +43,23 @@ public class PlayerMovement : MonoBehaviour
     {
         lineNum = maxLineNum / 2;
         targetPos = new Vector3(0, transform.position.y, transform.position.z);
+        startPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
         isGround = CheckGround();
-
+        transform.position=new Vector3(transform.position.x,transform.position.y,startPos.z);
         Jump();        //跳躍功能
         Slide();       //滑行功能
         ChangeLine();  //切換跑道功能
     }
     void FixedUpdate()
     {
-        Vector3 forwardDir=transform.forward*moveSpeed;
-        rb.velocity= new Vector3(rb.velocity.x,rb.velocity.y,forwardDir.z);
+        Vector3 forwardDir = transform.forward * moveSpeed;
+        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, forwardDir.z);
+
         LimitSpeed();
     }
     void ChangeLine()
