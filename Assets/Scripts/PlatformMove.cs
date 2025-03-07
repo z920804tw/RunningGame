@@ -13,7 +13,7 @@ public class PlatformMove : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        // playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+        playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
 
     }
 
@@ -21,10 +21,14 @@ public class PlatformMove : MonoBehaviour
     void Update()
     {
 
-        // if (isStop) return;
-        // isStop = playerHealth.IsDead;
+        if (isStop) return;
+        isStop = playerHealth.IsDead;
         transform.position += transform.forward * -moveSpeed * Time.deltaTime;
+
+
+        if (transform.position.z <= -100)
+        {
+            Destroy(gameObject);
+        }
     }
-
-
 }
