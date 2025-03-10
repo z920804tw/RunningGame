@@ -133,8 +133,10 @@ public class PlayerMovement : MonoBehaviour
         if (isSlide)
         {
             slideTime += Time.deltaTime;
+            Debug.Log(slideTime);
             if (slideTime >= 1f)
             {
+                
                 isSlide = false;
                 capsuleCollider.center = defaultCenter;
                 capsuleCollider.height = defaultHight;
