@@ -235,6 +235,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleType: 1
   dmg: 1
+  destoryEffect: {fileID: 104829970813648393, guid: d3015b7eea383f64d8b81f965cc466e7,
+    type: 3}
   canDestory: 1
 --- !u!1 &3014163124165598332
 GameObject:

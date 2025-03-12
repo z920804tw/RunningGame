@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
     PlayerMovement playerMovement;
 
     bool isdead;
-    public bool IsDead { get { return isdead;}}
+    public bool IsDead { get { return isdead; } }
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -31,8 +31,14 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHp = 0;
             playerMovement.anim.SetTrigger("Die");
-            playerMovement.enabled=false;
-            isdead=true;    
+            playerMovement.enabled = false;
+            isdead = true;
+
+            GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
+            foreach (GameObject i in platforms)
+            {
+                i.GetComponent<Platform>().isStop=true;
+            }
             return;
         }
 

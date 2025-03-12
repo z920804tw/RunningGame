@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlatformManager : MonoBehaviour
 {
@@ -9,26 +10,40 @@ public class PlatformManager : MonoBehaviour
     public GameObject[] platformPrefabs;
     public float platformLength;
     [SerializeField] GameObject preObj;
-    
+    public float platformSpeed = 8;
     void Start()
     {
-        preObj=transform.GetChild(0).gameObject;
-    }
+        preObj = transform.GetChild(0).gameObject;
+        preObj.GetComponent<Platform>().MoveSpeed = platformSpeed;
 
-    // Update is called once per frame
-    
+    }
     public void SpawnNext()
     {
-        Vector3 spawnPos=new Vector3(preObj.transform.position.x,preObj.transform.position.y,
-            preObj.transform.position.z+platformLength);
+        //取得下一個平台生成位置
+        Vector3 spawnPos = new Vector3(preObj.transform.position.x, preObj.transform.position.y,
+            preObj.transform.position.z + platformLength);
+        spawnPos.z = (int)spawnPos.z;
 
-        spawnPos.z=(int)spawnPos.z;
-        Debug.Log(spawnPos);
+        //隨機取哪個平台
         int rnd = Random.Range(0, platformPrefabs.Length);
-        GameObject pf = Instantiate(platformPrefabs[rnd],spawnPos, Quaternion.identity);
+        GameObject pf = Instantiate(platformPrefabs[rnd], spawnPos, Quaternion.identity);
         pf.transform.SetParent(this.transform);
         pf.name = $"Platform";
-        
-        preObj=pf;
+        pf.GetComponent<Platform>().MoveSpeed = platformSpeed;
+
+        preObj = pf;
+    }
+
+    public void AddPlatformSpeed(int increaseSpeed)
+    {
+        platformSpeed += increaseSpeed; //平台管理器的平台速度增加
+        GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
+        if (platforms != null)
+        {
+            foreach (GameObject i in platforms) //替場上所有的平台加速
+            {   
+               i.GetComponent<Platform>().MoveSpeed+=increaseSpeed; 
+            }
+        }   
     }
 }

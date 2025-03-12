@@ -110,8 +110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11014afac6090ba46acfab9f70894ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleType: 1
+  obstacleType: 0
   dmg: 999
+  destoryEffect: {fileID: 0}
   canDestory: 0
 --- !u!1 &5993517450997433845
 GameObject:
@@ -206,6 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7268649854706662977}
   - component: {fileID: 2963404265814480196}
+  - component: {fileID: 8606763577399320041}
   m_Layer: 0
   m_Name: Bus
   m_TagString: Untagged
@@ -251,3 +253,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0782118, y: 2.9271858, z: 7.9839892}
   m_Center: {x: -0.044396877, y: 1.5401014, z: 0.11530137}
+--- !u!114 &8606763577399320041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6860340682737502975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11014afac6090ba46acfab9f70894ca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleType: 1
+  dmg: 999
+  destoryEffect: {fileID: 104829970813648393, guid: d3015b7eea383f64d8b81f965cc466e7,
+    type: 3}
+  canDestory: 0

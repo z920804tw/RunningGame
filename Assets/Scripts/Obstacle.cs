@@ -13,9 +13,13 @@ public class Obstacle : MonoBehaviour
     // Start is called before the first frame update
     public ObstacleType obstacleType;
     public int dmg;
+    public GameObject destoryEffect;
     public bool canDestory;
     void DestoryThis()
     {
+        GameObject effect = Instantiate(destoryEffect,transform.position,Quaternion.identity);
+        effect.transform.SetParent(transform.parent);
+        Destroy(effect,2f);
         Destroy(gameObject);
     }
 
@@ -24,7 +28,6 @@ public class Obstacle : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             other.GetComponent<PlayerHealth>().TakeDmg(dmg);
-            Debug.Log(dmg);
             if (canDestory) DestoryThis();
         }
     }

@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position=new Vector3(transform.position.x,transform.position.y,startPos.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y, startPos.z);
         isGround = CheckGround();
         if (isGround)
         {
@@ -68,11 +68,6 @@ public class PlayerMovement : MonoBehaviour
         ChangeLine();  //切換跑道功能
         wasGround = isGround;
     }
-
-    // void FixedUpdate()
-    // {
-    //     rb.position=new Vector3(rb.position.x,rb.position.y,startPos.z);
-    // }
     void ChangeLine()
     {
         //換成第幾個Line
@@ -133,10 +128,8 @@ public class PlayerMovement : MonoBehaviour
         if (isSlide)
         {
             slideTime += Time.deltaTime;
-            Debug.Log(slideTime);
             if (slideTime >= 1f)
             {
-                
                 isSlide = false;
                 capsuleCollider.center = defaultCenter;
                 capsuleCollider.height = defaultHight;

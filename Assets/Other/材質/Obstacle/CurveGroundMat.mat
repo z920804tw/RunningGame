@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GroundMat 1
+  m_Name: CurveGroundMat
   m_Shader: {fileID: -6465566751694194690, guid: 22403dc37c1e1d748b3dbdbe2d2f0f04,
     type: 3}
   m_Parent: {fileID: 0}
@@ -15,7 +15,7 @@ Material:
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 6ba3a5cce46238648bfa02d4356aaa1c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 761fcc9b74a11dc4097e656edc402314, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -46,8 +46,8 @@ Material:
     - _Map_Strenght: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _tileX_Strenght: 1
-    - _tileY_Strenght: 1
+    - _tileX_Strenght: 50
+    - _tileY_Strenght: 50
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &5712764469663283767
