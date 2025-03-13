@@ -21,20 +21,13 @@ public class Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGround = CheckGround();
-        Jump();        //跳躍功能
-    }
-    bool CheckGround() //檢查是否碰到地面
-    {
-        Collider[] collider = Physics.OverlapSphere(new Vector3(transform.position.x,transform.position.y-playerH,transform.position.z), 0.2f, ground);
-        if (collider.Length != 0)
+        isGround = Physics.Raycast(transform.position, transform.up * -1, playerH);
+        Debug.DrawRay(transform.position,transform.up*-playerH,Color.red);
+        if (isGround)
         {
-            return true;
+            Jump();        //跳躍功能
         }
-        else
-        {
-            return false;
-        }
+        wasGround = isGround;
     }
     void Jump()
     {
@@ -43,22 +36,14 @@ public class Test : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-
+                Debug.Log("Jump");
                 isJump = true;
             }
         }
-        else if (isJump)
+        else if (isJump && !wasGround)
         {
-            if (isGround && !wasGround)
-            {
-
-                isJump = false;
-            }
+            isJump = false;
+            Debug.Log("Ground");
         }
-        wasGround = isGround;
-    }
-    void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(new Vector3(transform.position.x,transform.position.y-playerH,transform.position.z), 0.2f);
     }
 }

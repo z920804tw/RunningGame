@@ -10838,7 +10838,8 @@ MonoBehaviour:
   moveSpeed: 8
   isStop: 0
   parent: {fileID: 7901137974852408611}
-  isRandom: 1
+  randomClose: 1
+  randomSpawn: 0
   obstaclePrefabs: []
 --- !u!54 &-3434882565658142554
 Rigidbody:

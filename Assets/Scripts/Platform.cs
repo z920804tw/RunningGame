@@ -6,20 +6,25 @@ public class Platform : MonoBehaviour
 {
     // Start is called before the first frame update
     [Header("平台設定")]
+
     [SerializeField] float moveSpeed;
     public float MoveSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
     public bool isStop;
     Rigidbody rb;
+    PlatformManager platformManager;
 
     [Header("平台障礙物設定")]
     public Transform parent;
-    public bool isRandom;
+    public bool randomClose;
+    public bool randomSpawn;
     [SerializeField] List<GameObject> obstaclePrefabs;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        platformManager = transform.root.GetComponent<PlatformManager>();
         ObstacleSpawner();
+        ObstacleClose();
     }
 
     // Update is called once per frame
@@ -35,19 +40,30 @@ public class Platform : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     void ObstacleSpawner()
     {
-        if (isRandom) //隨機開關
+        if (randomSpawn)
         {
-            obstaclePrefabs.Clear();
-            float count = parent.childCount;
+            float count = obstaclePrefabs.Count;
+            for (int i = 0; i < count; i++)
+            {
+                int rnd = Random.Range(0, platformManager.obstaclePrefabs.Length);
+                GameObject obstacle = Instantiate(platformManager.obstaclePrefabs[rnd],
+                obstaclePrefabs[i].transform.position, Quaternion.identity);
+                obstacle.transform.SetParent(obstaclePrefabs[i].transform);
+
+            }
+        }
+    }
+    void ObstacleClose()
+    {
+        if (randomClose) //隨機開關
+        {
+            float count = obstaclePrefabs.Count;
             float rnd = 0f;
             for (int i = 0; i < count; i++) //新增物件
             {
-                obstaclePrefabs.Add(parent.GetChild(i).gameObject);
-
-                ObstacleType type = obstaclePrefabs[i].gameObject.GetComponent<Obstacle>().obstacleType;
+                ObstacleType type = obstaclePrefabs[i].gameObject.GetComponentInChildren<Obstacle>().obstacleType;
 
                 switch (type)
                 {

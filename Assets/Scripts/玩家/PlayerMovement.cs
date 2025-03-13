@@ -17,10 +17,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("跳躍參數設定")]
     public float jumpForce;
     [SerializeField] LayerMask ground;
-    [SerializeField] Vector3 checkOffset;
+    [SerializeField] float checkOffset;
     [SerializeField] bool isJump;
     [SerializeField] bool isGround;
-    [SerializeField] bool wasGround;
+    bool wasGround;
     [Header("滑行參數設定")]
     [SerializeField] float slideHight;
     [SerializeField] Vector3 slideCenter;
@@ -58,13 +58,15 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, startPos.z);
-        isGround = CheckGround();
+
+        isGround = Physics.Raycast(transform.position, transform.up * -1, checkOffset);
+        Debug.DrawRay(transform.position, transform.up * -checkOffset, Color.red);
+
         if (isGround)
         {
             Jump();        //跳躍功能
             Slide();       //滑行功能
         }
-
         ChangeLine();  //切換跑道功能
         wasGround = isGround;
     }
@@ -88,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         //移動位置  
-        if (targetPos.x != rb.position.x)
+        if (targetPos.x != transform.position.x)
         {
             targetPos = new Vector3(targetPos.x, transform.position.y, transform.position.z); //Y跟Z軸保持當前的值，而x軸則會使用上面修改的數值
             transform.position = Vector3.MoveTowards(transform.position, targetPos, 10 * Time.deltaTime);
@@ -100,32 +102,35 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                isJump = true;
                 rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+                isJump = true;
                 anim.SetBool("Jump", true);
+                Debug.Log("Jump");
             }
         }
         else if (isJump && !wasGround)
         {
-            anim.SetBool("Jump", false);
             isJump = false;
+            anim.SetBool("Jump", false);
+            Debug.Log("Ground");
         }
     }
     void Slide()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (!isSlide)
         {
-            if (!isSlide)
+            if (Input.GetKeyDown(KeyCode.DownArrow))
             {
+
                 anim.SetTrigger("Slide");
                 isSlide = true;
                 capsuleCollider.center = slideCenter;
                 capsuleCollider.height = slideHight;
                 Debug.Log("滑行");
+
             }
         }
-
-        if (isSlide)
+        else if (isSlide)
         {
             slideTime += Time.deltaTime;
             if (slideTime >= 1f)
@@ -136,22 +141,5 @@ public class PlayerMovement : MonoBehaviour
                 slideTime = 0;
             }
         }
-    }
-
-    bool CheckGround() //檢查是否碰到地面
-    {
-        Collider[] collider = Physics.OverlapSphere(transform.position + checkOffset, 0.2f, ground);
-        if (collider.Length != 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position + checkOffset, 0.2f);
     }
 }

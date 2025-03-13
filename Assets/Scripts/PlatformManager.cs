@@ -11,6 +11,9 @@ public class PlatformManager : MonoBehaviour
     public float platformLength;
     [SerializeField] GameObject preObj;
     public float platformSpeed = 8;
+
+    [Header("障礙物")]
+    public GameObject[] obstaclePrefabs;
     void Start()
     {
         preObj = transform.GetChild(0).gameObject;
