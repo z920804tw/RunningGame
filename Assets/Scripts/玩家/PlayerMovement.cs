@@ -1,7 +1,6 @@
-using System.Reflection;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading;
+using System.Collections;
 using UnityEngine;
+
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,8 +10,9 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     CapsuleCollider capsuleCollider;
 
-    [Header("移動參數設定")]
-    public float moveSpeed;
+    [Header("蒐集碰撞設定")]
+    public BoxCollider collectTrigger;
+    [SerializeField] Vector3 colliderSize;
 
     [Header("跳躍參數設定")]
     public float jumpForce;
@@ -69,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
         }
         ChangeLine();  //切換跑道功能
         wasGround = isGround;
+
+
     }
     void ChangeLine()
     {
@@ -142,4 +144,18 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    public void ChangeCollectSize(float time,Vector3 size)
+    {
+        collectTrigger.size=size;
+        StartCoroutine(CollectTime(time));
+    }
+
+    IEnumerator CollectTime(float time)
+    {
+        //時間到會回復大小(1,1,1)
+        yield return new WaitForSeconds(time);
+        collectTrigger.size=colliderSize;
+    }
+
 }

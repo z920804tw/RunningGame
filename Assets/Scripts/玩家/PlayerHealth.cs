@@ -8,7 +8,10 @@ public class PlayerHealth : MonoBehaviour
     [Header("參數設定")]
     public int maxHp;
     [SerializeField] int currentHp;
+    public int CurrentHp { get { return currentHp; } set { currentHp = value; } }
     PlayerMovement playerMovement;
+
+    public bool invincible = false;
 
     bool isdead;
     public bool IsDead { get { return isdead; } }
@@ -24,8 +27,10 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
-    public void TakeDmg(int dmg)
+    public void TakeDmg(GameObject hit,int dmg)
     {
+        if (invincible && hit.GetComponent<Obstacle>().canDestory==true) return;
+
         currentHp -= dmg;
         if (currentHp <= 0)
         {
@@ -37,11 +42,24 @@ public class PlayerHealth : MonoBehaviour
             GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
             foreach (GameObject i in platforms)
             {
-                i.GetComponent<Platform>().isStop=true;
+                i.GetComponent<Platform>().isStop = true;
             }
             return;
         }
 
         playerMovement.anim.SetTrigger("Hit");
+    }
+
+
+    public void SetInvincible(float timer)
+    {
+        invincible = true;
+        StartCoroutine(InvincibleReset(timer));
+    }
+
+    IEnumerator InvincibleReset(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        invincible=false;
     }
 }

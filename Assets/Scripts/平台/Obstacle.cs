@@ -27,7 +27,7 @@ public class Obstacle : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<PlayerHealth>().TakeDmg(dmg);
+            other.GetComponent<PlayerHealth>().TakeDmg(gameObject,dmg);
             if (canDestory) DestoryThis();
         }
     }
