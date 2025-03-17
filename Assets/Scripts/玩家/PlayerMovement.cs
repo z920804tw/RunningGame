@@ -107,14 +107,12 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
                 isJump = true;
                 anim.SetBool("Jump", true);
-                Debug.Log("Jump");
             }
         }
         else if (isJump && !wasGround)
         {
             isJump = false;
             anim.SetBool("Jump", false);
-            Debug.Log("Ground");
         }
     }
     void Slide()
@@ -128,8 +126,6 @@ public class PlayerMovement : MonoBehaviour
                 isSlide = true;
                 capsuleCollider.center = slideCenter;
                 capsuleCollider.height = slideHight;
-                Debug.Log("滑行");
-
             }
         }
         else if (isSlide)

@@ -23,6 +23,12 @@ public class Platform : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         platformManager = transform.root.GetComponent<PlatformManager>();
+
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            obstaclePrefabs.Add(parent.GetChild(i).gameObject);
+        }
+
         ObstacleSpawner();
         ObstacleClose();
     }
@@ -63,7 +69,7 @@ public class Platform : MonoBehaviour
             float rnd = 0f;
             for (int i = 0; i < count; i++) //新增物件
             {
-                ObstacleType type = obstaclePrefabs[i].gameObject.GetComponentInChildren<Obstacle>().obstacleType;
+                ObstacleType type = obstaclePrefabs[i].gameObject.GetComponent<Obstacle>().obstacleType;
 
                 switch (type)
                 {
@@ -73,15 +79,13 @@ public class Platform : MonoBehaviour
                     case ObstacleType.Obstacle:
                         rnd = 0.04f;
                         break;
-                    case ObstacleType.GroupObstacle:
-                        rnd = 0.02f;
-                        break;
                     default:
                         break;
                 }
                 if (Random.value < rnd)
                 {
                     obstaclePrefabs[i].SetActive(false);
+                    Debug.Log("關閉");
                 }
             }
         }

@@ -29,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDmg(GameObject hit,int dmg)
     {
-        if (invincible && hit.GetComponent<Obstacle>().canDestory==true) return;
+        if (invincible && hit.GetComponent<BorderTrigger>().canDestory) return;
 
         currentHp -= dmg;
         if (currentHp <= 0)

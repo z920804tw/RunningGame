@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4085710296632565498}
   - component: {fileID: 4876696528289369155}
-  - component: {fileID: -1668670643958526185}
+  - component: {fileID: 3238607172429309567}
   m_Layer: 9
   m_Name: Obstacle3
   m_TagString: Untagged
@@ -222,7 +222,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.8, y: 3.286999, z: 6.2463245}
   m_Center: {x: 0, y: 1.65, z: 0}
---- !u!114 &-1668670643958526185
+--- !u!114 &3238607172429309567
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,8 +235,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleType: 1
-  dmg: 0
-  canDestory: 0
 --- !u!1 &3550176247972256195
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +450,8 @@ GameObject:
   - component: {fileID: 8883434515191013919}
   - component: {fileID: 8192754048265350978}
   - component: {fileID: 7163966906039710937}
-  - component: {fileID: 4351247076844290328}
+  - component: {fileID: 904078522895218341}
+  - component: {fileID: 8706098435670446070}
   m_Layer: 0
   m_Name: border
   m_TagString: Untagged
@@ -538,7 +537,104 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5404701, y: 1.0612108, z: 0.7348652}
   m_Center: {x: -0.0051021576, y: 0.40000004, z: -2.9891787}
---- !u!114 &4351247076844290328
+--- !u!82 &904078522895218341
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5074538631621018356}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -8577967614683267908, guid: 42396b6702fcad741abcbddbaaec3555,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &8706098435670446070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -547,11 +643,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5074538631621018356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11014afac6090ba46acfab9f70894ca0, type: 3}
+  m_Script: {fileID: 11500000, guid: 608e03c256a81d742b3aca6d8dff60a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleType: 0
   dmg: 999
+  destoryEffect: {fileID: 0}
+  audioSource: {fileID: 904078522895218341}
+  hitClip: {fileID: 8300000, guid: 4b8fa9f6969b5db4eb1ad017c2e207fc, type: 3}
   canDestory: 0
 --- !u!1 &7202798670243213025
 GameObject:
