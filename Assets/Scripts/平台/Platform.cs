@@ -82,7 +82,7 @@ public class Platform : MonoBehaviour
                     default:
                         break;
                 }
-                if (Random.value < rnd)
+                if (rnd > Random.value)
                 {
                     obstaclePrefabs[i].SetActive(false);
                     Debug.Log("關閉");

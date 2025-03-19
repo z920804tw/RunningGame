@@ -19,19 +19,17 @@ public class PlayerHealth : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         currentHp = maxHp;
+        GameObject.FindWithTag("GameManager").GetComponent<GameStatusUI>().IncreaseHpUI(maxHp);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
-
-    public void TakeDmg(GameObject hit,int dmg)
+    public void TakeDmg(GameObject hit, int dmg)
     {
         if (invincible && hit.GetComponent<BorderTrigger>().canDestory) return;
 
         currentHp -= dmg;
+        GameObject.FindWithTag("GameManager").GetComponent<GameStatusUI>().DecreaseHpUI(dmg);
+
         if (currentHp <= 0)
         {
             currentHp = 0;
@@ -51,15 +49,15 @@ public class PlayerHealth : MonoBehaviour
     }
 
 
-    public void SetInvincible(float timer)
+    public void SetInvincible(float timer) //開始無敵
     {
         invincible = true;
         StartCoroutine(InvincibleReset(timer));
     }
 
-    IEnumerator InvincibleReset(float timer)
+    IEnumerator InvincibleReset(float timer) //重製無敵
     {
         yield return new WaitForSeconds(timer);
-        invincible=false;
+        invincible = false;
     }
 }

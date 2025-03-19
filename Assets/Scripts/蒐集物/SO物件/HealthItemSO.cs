@@ -8,10 +8,11 @@ public class HealthItemSO : ItemSO
     public override void CollectEffect()
     {
         PlayerHealth playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
-        if (playerHealth != null)
+        GameStatusUI gameStatusUI = GameObject.FindWithTag("GameManager").GetComponent<GameStatusUI>();
+        if (playerHealth != null &&playerHealth.CurrentHp<playerHealth.maxHp)
         {
             playerHealth.CurrentHp += addHp;
-            Debug.Log("add");
+            gameStatusUI.IncreaseHpUI(addHp);
         }
     }
 

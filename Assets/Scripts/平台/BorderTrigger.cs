@@ -16,7 +16,7 @@ public class BorderTrigger : MonoBehaviour
     {
         GameObject effect = Instantiate(destoryEffect, transform.position, Quaternion.identity);
         effect.transform.SetParent(transform.parent);
-        Destroy(effect, 2f);
+        Destroy(effect, 1.2f);
         Destroy(gameObject, 0.5f);
     }
     void OnTriggerEnter(Collider other)
@@ -25,8 +25,6 @@ public class BorderTrigger : MonoBehaviour
         {
             audioSource.PlayOneShot(hitClip);
             other.GetComponent<PlayerHealth>().TakeDmg(gameObject, dmg);
-            audioSource.PlayOneShot(hitClip);
-
             if (canDestory) DestoryThis();
         }
     }
