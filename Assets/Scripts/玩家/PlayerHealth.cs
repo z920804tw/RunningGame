@@ -42,6 +42,8 @@ public class PlayerHealth : MonoBehaviour
             {
                 i.GetComponent<Platform>().isStop = true;
             }
+
+            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().EndGame(); //設定遊戲狀態為結束
             return;
         }
 

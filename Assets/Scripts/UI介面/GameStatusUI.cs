@@ -7,43 +7,46 @@ public class GameStatusUI : MonoBehaviour
 {
     // Start is called before the first frame update
     [Header("關卡狀態")]
+    public GameManager gameManager;
+    public PlatformManager platformManager;
+    public TMP_Text distanceText;
     public TMP_Text timerText;
     public TMP_Text coinText;
     float timer;
+    float distance;
     int coinCount;
+
+    public float Timer{get{return timer;}}
+    public float Distance{get{return distance;}}
+    public int CoinCount{get{return coinCount;}}
     [Header("玩家狀態")]
     public PlayerHealth playerHealth;
     public GameObject hpBar;
     public TMP_Text hpText;
     public GameObject healthPrefab;
 
-    [Header("場景UI")]
-    public GameObject pauseUI;
-    bool isPause;
     void Start()
     {
         timer = 0;
         coinCount = 0;
         coinText.text = $"x{coinCount}";
-
-        isPause=false;
     }
 
     void Update()
     {
-        if (playerHealth.IsDead) return;
+        if (gameManager.gameStatusType == GameStatusType.End ||
+            gameManager.gameStatusType == GameStatusType.None) return;
 
         timer += Time.deltaTime;
         timerText.text = $"時間:{(int)timer}s";
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            PauseUiStatus();
-        }
+        distance += platformManager.platformSpeed / 2 * Time.deltaTime;
+        distanceText.text = $"距離:{(int)distance}m";
+
 
     }
 
-    public void UpdateCoin()
+    public void UpdateCoin() //更新金幣
     {
         coinCount++;
         coinText.text = $"x{coinCount}";
@@ -77,25 +80,7 @@ public class GameStatusUI : MonoBehaviour
         {
             GameObject add = Instantiate(healthPrefab, transform.position, Quaternion.identity);
             add.transform.SetParent(hpBar.transform);
+            add.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         }
-
     }
-
-    void PauseUiStatus()
-    {
-        if (isPause)
-        {
-            //關閉
-            pauseUI.SetActive(false);
-            Time.timeScale=1;
-        }
-        else
-        {
-            pauseUI.SetActive(true);
-            Time.timeScale=0;   
-        }
-        isPause=!isPause;
-    }
-
-
 }
