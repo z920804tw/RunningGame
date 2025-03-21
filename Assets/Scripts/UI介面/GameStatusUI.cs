@@ -7,6 +7,10 @@ public class GameStatusUI : MonoBehaviour
 {
     // Start is called before the first frame update
     [Header("關卡狀態")]
+    public GameObject levelStatusUI;
+    public TMP_Text statusText;
+    public TMP_Text startHintText;
+    [Header("遊玩狀態")]
     public GameManager gameManager;
     public PlatformManager platformManager;
     public TMP_Text distanceText;
@@ -16,9 +20,9 @@ public class GameStatusUI : MonoBehaviour
     float distance;
     int coinCount;
 
-    public float Timer{get{return timer;}}
-    public float Distance{get{return distance;}}
-    public int CoinCount{get{return coinCount;}}
+    public float Timer { get { return timer; } }
+    public float Distance { get { return distance; } }
+    public int CoinCount { get { return coinCount; } }
     [Header("玩家狀態")]
     public PlayerHealth playerHealth;
     public GameObject hpBar;

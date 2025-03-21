@@ -12,6 +12,7 @@ public class Platform : MonoBehaviour
     public bool isStop;
     Rigidbody rb;
     PlatformManager platformManager;
+    GameManager gameManager;
 
     [Header("平台障礙物設定")]
     public Transform parent;
@@ -23,6 +24,7 @@ public class Platform : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         platformManager = transform.root.GetComponent<PlatformManager>();
+        gameManager=GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
 
         for (int i = 0; i < parent.childCount; i++)
         {
@@ -37,7 +39,7 @@ public class Platform : MonoBehaviour
     void Update()
     {
 
-        if (isStop) return;
+        if (isStop || gameManager.gameStatusType==GameStatusType.End) return;
         transform.position += transform.forward * -moveSpeed * Time.deltaTime;
 
 
@@ -80,6 +82,7 @@ public class Platform : MonoBehaviour
                         rnd = 0.04f;
                         break;
                     default:
+                        rnd = -999;
                         break;
                 }
                 if (rnd > Random.value)

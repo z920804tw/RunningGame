@@ -20,7 +20,7 @@ public class GameOverUI : MonoBehaviour
 
     public void GameOver()
     {
-        StartCoroutine(DelayOpen(gameOverUI, 2f));
+        StartCoroutine(DelayOpen(gameOverUI, 4f));
 
         //設定結束數據
         endTime.text = $"遊玩時間:{(int)gameStatusUI.Timer}s";
@@ -29,7 +29,6 @@ public class GameOverUI : MonoBehaviour
     }
     IEnumerator DelayOpen(GameObject obj, float delayTime)
     {
-
         yield return new WaitForSeconds(delayTime);
         obj.SetActive(true);
     }

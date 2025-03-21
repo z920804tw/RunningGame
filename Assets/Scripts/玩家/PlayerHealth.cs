@@ -36,13 +36,7 @@ public class PlayerHealth : MonoBehaviour
             playerMovement.anim.SetTrigger("Die");
             playerMovement.enabled = false;
             isdead = true;
-
-            GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
-            foreach (GameObject i in platforms)
-            {
-                i.GetComponent<Platform>().isStop = true;
-            }
-
+            
             GameObject.FindWithTag("GameManager").GetComponent<GameManager>().EndGame(); //設定遊戲狀態為結束
             return;
         }

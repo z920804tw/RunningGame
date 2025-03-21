@@ -4,6 +4,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum PlatformState
+{
+    State1,
+    State2,
+    State3,
+}
 public class PlatformManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -44,9 +50,9 @@ public class PlatformManager : MonoBehaviour
         if (platforms != null)
         {
             foreach (GameObject i in platforms) //替場上所有的平台加速
-            {   
-               i.GetComponent<Platform>().MoveSpeed+=increaseSpeed; 
+            {
+                i.GetComponent<Platform>().MoveSpeed += increaseSpeed;
             }
-        }   
+        }
     }
 }

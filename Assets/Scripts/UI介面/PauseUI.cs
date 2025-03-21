@@ -25,7 +25,7 @@ public class PauseUI : MonoBehaviour
             PauseUiStatus();
         }
     }
-    void PauseUiStatus()
+    public void PauseUiStatus()
     {
         if (isPaused)
         {
@@ -39,5 +39,19 @@ public class PauseUI : MonoBehaviour
             Time.timeScale = 0;
         }
         isPaused = !isPaused;
+    }
+
+    public void OpenPage(int i)
+    {
+        CloseAll();
+        pausePages[i].SetActive(true);
+    }
+
+    void CloseAll()
+    {
+        foreach (GameObject i in pausePages)
+        {
+            i.SetActive(false);
+        }
     }
 }
