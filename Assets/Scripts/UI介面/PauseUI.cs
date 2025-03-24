@@ -7,6 +7,7 @@ public class PauseUI : MonoBehaviour
     // Start is called before the first frame update
     [Header("場景UI")]
     public GameManager gameManager;
+    public LoadingUI loadingUI;
     public GameObject pauseUI;
     public GameObject[] pausePages;
     bool isPaused;
@@ -53,5 +54,9 @@ public class PauseUI : MonoBehaviour
         {
             i.SetActive(false);
         }
+    }
+    public void BackToLobby()
+    {
+        loadingUI.Load(0);
     }
 }
