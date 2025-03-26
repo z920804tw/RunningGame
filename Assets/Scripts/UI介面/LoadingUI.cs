@@ -24,7 +24,10 @@ public class LoadingUI : MonoBehaviour
 
     IEnumerator LoadLevel(int index)
     {
-        yield return StartCoroutine(FadeOut());
+
+        anim.SetTrigger("Load");
+        yield return new WaitForSecondsRealtime(1.5f);
+
         loadBar.SetActive(true);
         loadText.gameObject.SetActive(true);
 
@@ -41,14 +44,10 @@ public class LoadingUI : MonoBehaviour
         loadImg.fillAmount = 1;
         yield return new WaitForSeconds(1);
         loadText.gameObject.SetActive(false);
+        loadBar.SetActive(false);
         scene.allowSceneActivation = true;
 
 
     }
 
-    IEnumerator FadeOut()
-    {
-        anim.SetTrigger("Load");
-        yield return new WaitForSecondsRealtime(1.5f);
-    }
 }

@@ -8,17 +8,6 @@ public class Lobby : MonoBehaviour
     // Start is called before the first frame update
     public GameObject[] pages;
     public LoadingUI loadingUI;
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void LoadLevel(int i)
     {
         loadingUI.Load(i);
@@ -35,5 +24,10 @@ public class Lobby : MonoBehaviour
         {
             i.SetActive(false);
         }
+    }
+
+    public void CloseGame()
+    {
+        Application.Quit();
     }
 }

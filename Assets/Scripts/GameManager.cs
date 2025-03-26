@@ -20,11 +20,6 @@ public class GameManager : MonoBehaviour
     public Platform firstPlatform;
 
     GameStatusUI gameStatusUI;
-
-
-
-
-
     void Start()
     {
         gameStatusType = GameStatusType.None;

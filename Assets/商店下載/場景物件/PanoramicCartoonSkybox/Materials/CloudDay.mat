@@ -112,7 +112,7 @@ Material:
     - _DstBlend: 0
     - _EnableFog: 0
     - _EnableRotation: 0
-    - _Exposure: 1.17
+    - _Exposure: 1
     - _Exposure1: 1
     - _Exposure2: 1
     - _FogFill: 0.5
