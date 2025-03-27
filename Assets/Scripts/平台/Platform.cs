@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
@@ -24,7 +25,7 @@ public class Platform : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         platformManager = transform.root.GetComponent<PlatformManager>();
-        gameManager=GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
 
         for (int i = 0; i < parent.childCount; i++)
         {
@@ -39,7 +40,7 @@ public class Platform : MonoBehaviour
     void Update()
     {
 
-        if (isStop || gameManager.gameStatusType==GameStatusType.End) return;
+        if (isStop || gameManager.gameStatusType == GameStatusType.End) return;
         transform.position += transform.forward * -moveSpeed * Time.deltaTime;
 
 
@@ -59,7 +60,7 @@ public class Platform : MonoBehaviour
                 GameObject obstacle = Instantiate(platformManager.obstaclePrefabs[rnd],
                 obstaclePrefabs[i].transform.position, Quaternion.identity);
                 obstacle.transform.SetParent(obstaclePrefabs[i].transform);
-
+                Debug.Log("生成");
             }
         }
     }
@@ -71,7 +72,9 @@ public class Platform : MonoBehaviour
             float rnd = 0f;
             for (int i = 0; i < count; i++) //新增物件
             {
-                ObstacleType type = obstaclePrefabs[i].gameObject.GetComponent<Obstacle>().obstacleType;
+
+                if (obstaclePrefabs[i].gameObject.GetComponentInChildren<Obstacle>()==null) continue;
+                ObstacleType type = obstaclePrefabs[i].gameObject.GetComponentInChildren<Obstacle>().obstacleType;
 
                 switch (type)
                 {
