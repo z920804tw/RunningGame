@@ -2530,7 +2530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  isStop: 1
+  isStop: 0
   parent: {fileID: 7545677084671040051}
   randomClose: 1
   randomSpawn: 0

@@ -307,14 +307,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 751844345}
-        m_TargetAssemblyTypeName: Lobby, Assembly-CSharp
-        m_MethodName: LoadLevel
+      - m_Target: {fileID: 1133904369}
+        m_TargetAssemblyTypeName: LoadingUI, Assembly-CSharp
+        m_MethodName: Load
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -901,9 +901,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 751844345}
-        m_TargetAssemblyTypeName: Lobby, Assembly-CSharp
-        m_MethodName: LoadLevel
+      - m_Target: {fileID: 1133904369}
+        m_TargetAssemblyTypeName: LoadingUI, Assembly-CSharp
+        m_MethodName: Load
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3835,7 +3835,6 @@ MonoBehaviour:
   - {fileID: 1894223177}
   - {fileID: 113429190}
   - {fileID: 245032433}
-  loadingUI: {fileID: 1133904369}
 --- !u!114 &751844346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6764,7 +6763,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: f4467d24373901443ac50eca6e78d7f4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7327,7 +7326,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a116563ba52ad9741b2f1f663a211f19, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

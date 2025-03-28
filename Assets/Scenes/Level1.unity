@@ -28985,7 +28985,7 @@ MonoBehaviour:
   - {fileID: 8072434927765720709, guid: 0c2a037f0310547499b28898897c608c, type: 3}
   platformLength: 105
   preObj: {fileID: 0}
-  platformSpeed: 8
+  platformSpeed: 7
   obstaclePrefabs:
   - {fileID: 6860340682737502975, guid: 676f624676e7c6b42807e08e05672993, type: 3}
   - {fileID: 6765151305650377718, guid: 81efb4f473b1f9246b17604a4671eb34, type: 3}

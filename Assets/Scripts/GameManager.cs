@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
             if (platformState == PlatformState.State1 && gameStatusUI.Timer >= 100f && gameStatusUI.Timer <= 180f)
             {
                 platformState = PlatformState.State2;
-                platformManager.platformSpeed = 10;
+                platformManager.platformSpeed = 8;
 
                 GameObject[] currentPlatform = GameObject.FindGameObjectsWithTag("Platform");
                 foreach (GameObject i in currentPlatform)
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
             else if (platformState == PlatformState.State2 && gameStatusUI.Timer > 180)
             {
                 platformState = PlatformState.State3;
-                platformManager.platformSpeed = 14;
+                platformManager.platformSpeed = 9;
                 GameObject[] currentPlatform = GameObject.FindGameObjectsWithTag("Platform");
                 foreach (GameObject i in currentPlatform)
                 {

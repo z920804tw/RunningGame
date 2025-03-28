@@ -48,7 +48,8 @@ Material:
     - _QueueOffset: 0
     - _tileX_Strenght: 1
     - _tileY_Strenght: 1
-    m_Colors: []
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5712764469663283767
 MonoBehaviour:

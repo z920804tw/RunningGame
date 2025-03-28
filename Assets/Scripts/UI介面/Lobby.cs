@@ -7,12 +7,6 @@ public class Lobby : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] pages;
-    public LoadingUI loadingUI;
-    public void LoadLevel(int i)
-    {
-        loadingUI.Load(i);
-    }
-
     public void OpenPage(int i)
     {
         CloseAllpage();
