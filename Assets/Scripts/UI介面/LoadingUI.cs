@@ -15,6 +15,7 @@ public class LoadingUI : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        StartCoroutine(ClosePanel());
     }
     public void Load(int i)
     {
@@ -22,6 +23,11 @@ public class LoadingUI : MonoBehaviour
         StartCoroutine(LoadLevel(i));
     }
 
+    IEnumerator ClosePanel()
+    {
+        yield return new WaitForSeconds(2f);
+        bg.SetActive(false);
+    }
     IEnumerator LoadLevel(int index)
     {
 
@@ -40,11 +46,11 @@ public class LoadingUI : MonoBehaviour
         }
 
         //讀取好後會先延遲1秒完成讀取，並切換關卡
-        Time.timeScale = 1;
         loadImg.fillAmount = 1;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(1f);
         loadText.gameObject.SetActive(false);
         loadBar.SetActive(false);
+        Time.timeScale = 1;
         scene.allowSceneActivation = true;
 
 

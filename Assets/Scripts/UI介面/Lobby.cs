@@ -7,6 +7,7 @@ public class Lobby : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] pages;
+    public GameObject exitPage;
     public void OpenPage(int i)
     {
         CloseAllpage();
@@ -20,6 +21,14 @@ public class Lobby : MonoBehaviour
         }
     }
 
+    public void OpenExit()
+    {
+        exitPage.SetActive(true);
+    }
+    public void CloseExit()
+    {
+        exitPage.SetActive(false);
+    }
     public void CloseGame()
     {
         Application.Quit();

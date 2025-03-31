@@ -132,4 +132,13 @@ public class GameSetting : MonoBehaviour
         if (PlayerPrefs.GetInt("FullScreen") == 1) fullToggle.isOn = true; else fullToggle.isOn = false;
     }
     //--------------------------解析度設定--------------------------//
+
+    public void ResetSetting()
+    {
+        PlayerPrefs.SetFloat("MainVolume", 1);
+        PlayerPrefs.SetFloat("MusicVolume", 1);
+        PlayerPrefs.SetFloat("SfxVolume", 1);
+
+        LoadAudioVolume();
+    }
 }

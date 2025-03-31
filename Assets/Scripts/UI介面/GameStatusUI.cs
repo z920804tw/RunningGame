@@ -58,22 +58,23 @@ public class GameStatusUI : MonoBehaviour
 
     public void DecreaseHpUI(int i)
     {
-        if (i != 999)  //不是999的代表就是不會馬上死，如果傳入的值是999代表即死
+        if (i == 999)  //不是999的代表就是不會馬上死，如果傳入的值是999代表即死
+        {
+
+            hpText.text = $"HP:{0}/{playerHealth.maxHp}";
+            for (int j = hpBar.transform.childCount-1; j >= 0; j--)
+            {
+                GameObject health = hpBar.transform.GetChild(j).gameObject;
+                Destroy(health);
+            }
+        }
+        else
         {
             hpText.text = $"HP:{playerHealth.CurrentHp}/{playerHealth.maxHp}";
             for (int j = 0; j < i; j++)
             {
                 GameObject last = hpBar.transform.GetChild(hpBar.transform.childCount - 1).gameObject;
                 Destroy(last);
-            }
-        }
-        else
-        {
-            hpText.text = $"HP:{0}/{playerHealth.maxHp}";
-            for (int j = hpBar.transform.childCount; j > 0; j--)
-            {
-                GameObject health = hpBar.transform.GetChild(j - 1).gameObject;
-                Destroy(health);
             }
         }
     }

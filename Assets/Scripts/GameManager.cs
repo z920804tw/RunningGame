@@ -12,12 +12,16 @@ public enum GameStatusType
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
+    [Header("參數物件設定")]
     public PlatformManager platformManager;
-    public GameStatusType gameStatusType;
-    public PlatformState platformState;
+    public GameObject player;
     public GameObject StartCam;
     public Animator PlayrAnim;
     public Platform firstPlatform;
+    [Header("狀態")]
+    public GameStatusType gameStatusType;
+    public PlatformState platformState;
+
 
     GameStatusUI gameStatusUI;
     void Start()
@@ -31,10 +35,15 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (gameStatusType == GameStatusType.End) return;
+        if (gameStatusType == GameStatusType.None)
+        {
+            StarGame();
+            return;
+        }
 
         if (gameStatusType == GameStatusType.Start)
         {
-            if (platformState == PlatformState.State1 && gameStatusUI.Timer >= 100f && gameStatusUI.Timer <= 180f)
+            if (platformState == PlatformState.State1 && gameStatusUI.Timer >= 100f && gameStatusUI.Timer <= 180f) //判斷時間來增加難度
             {
                 platformState = PlatformState.State2;
                 platformManager.platformSpeed = 8;
@@ -56,12 +65,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
-        if (gameStatusType == GameStatusType.None)
-        {
-            StarGame();
-        }
-
     }
 
     public void StarGame()
@@ -77,6 +80,7 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         gameStatusType = GameStatusType.End;
+
         GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
         foreach (GameObject i in platforms)
         {
@@ -100,6 +104,7 @@ public class GameManager : MonoBehaviour
         gameStatusUI.statusText.text = $"Start!";
         PlayrAnim.SetTrigger("Start");
         firstPlatform.isStop = false;
+        player.GetComponent<PlayerMovement>().enabled = true;
 
         gameStatusUI.levelStatusUI.SetActive(true);
 

@@ -28,19 +28,18 @@ public class PlayerHealth : MonoBehaviour
         if (invincible && hit.GetComponent<BorderTrigger>().canDestory) return;
 
         currentHp -= dmg;
+        //UI更新
         GameObject.FindWithTag("GameManager").GetComponent<GameStatusUI>().DecreaseHpUI(dmg);
-
         if (currentHp <= 0)
         {
             currentHp = 0;
             playerMovement.anim.SetTrigger("Die");
             playerMovement.enabled = false;
             isdead = true;
-            
+
             GameObject.FindWithTag("GameManager").GetComponent<GameManager>().EndGame(); //設定遊戲狀態為結束
             return;
         }
-
         playerMovement.anim.SetTrigger("Hit");
     }
 
